@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="./bundle.js" defer></script>
+    <style>
+      body {
+        padding-top: 40px;
+      }
+      #opcodes {
+        padding: 8px;
+        margin-top: 30px;
+        height: 600px;
+        width: 200px;
+        overflow: auto;
+        background-color: black;
+        color: white;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <label for="chains">Chain:</label>
+    <select name="chain" id="chains" required></select>
+
+    <label for="hardforks">Hardfork:</label>
+    <select name="hardfork" id="hardforks" required></select>
+
+    <div id="opcodes"></div>
+    <div id="error"></div>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "run-code-browser",
+  "private": true,
+  "scripts": {
+    "start": "browserify index.js -o bundle.js && http-server"
+  },
+  "dependencies": {
+    "@ethereumjs/common": "^2.5.0",
+    "@ethereumjs/vm": "^5.5.3",
+    "browserify": "^17.0.0",
+    "http-server": "^13.0.2"
+  }
+}

@@ -2,15 +2,20 @@ const VM = require('@ethereumjs/vm').default
 const Common = require('@ethereumjs/common').default
 const Chain = require('@ethereumjs/common').Chain
 
+let common = null
 let vm = null
-const common = new Common({ chain: Chain.Mainnet })
+
 const output = document.getElementById('opcodes')
 const error = document.getElementById('error')
 
-function getCodes() {
+function initVm(chainId) {
+  console.log("Initializing new VM with chain: ", chainId)
+  common = new Common({ chain: chainId || Chain.Mainnet })
   vm = new VM({ common })
-  output.innerHTML = ''
+}
 
+function getCodes(chainId) {
+  output.innerHTML = ''
   vm.getActiveOpcodes().forEach((value) => {
     output.innerHTML += value.code + ':' + value.fullName + "<br/>"
   })
@@ -24,7 +29,6 @@ function listChains() {
       select.add(new Option(item))
     }
   }
-  common.setChain(select.value.toLowerCase())
   listHardForks()
 }
 
@@ -39,7 +43,7 @@ function listHardForks() {
 }
 
 function onChainChange(select) {
-  common.setChain(select.target.value.toLowerCase())
+  initVm(select.target.value.toLowerCase())
   listHardForks()
 }
 
@@ -48,6 +52,7 @@ function onHardForkChange(select) {
   getCodes()
 }
 
+initVm()
 listChains()
 document.getElementById('hardforks').addEventListener('input', onHardForkChange)
 document.getElementById('chains').addEventListener('input', onChainChange)

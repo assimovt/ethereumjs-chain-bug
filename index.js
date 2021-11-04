@@ -29,16 +29,6 @@ function listChains() {
       select.add(new Option(item))
     }
   }
-  listHardForks()
-}
-
-function listHardForks() {
-  const select = document.getElementById('hardforks')
-  select.innerHTML = ''
-  common.hardforks().forEach((value) => {
-    select.add(new Option(value.name))
-  })
-  common.setHardfork(select.value)
   getCodes()
 }
 
@@ -47,12 +37,6 @@ function onChainChange(select) {
   listHardForks()
 }
 
-function onHardForkChange(select) {
-  common.setHardfork(select.target.value)
-  getCodes()
-}
-
 initVm()
 listChains()
-document.getElementById('hardforks').addEventListener('input', onHardForkChange)
 document.getElementById('chains').addEventListener('input', onChainChange)
